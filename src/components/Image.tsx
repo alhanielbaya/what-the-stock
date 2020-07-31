@@ -1,8 +1,8 @@
 import React from "react";
 import { css } from "emotion";
 
-const Image = (props: { imgSrc: string }) => {
-  const { imgSrc } = props;
+const Image = (props: { imgSrc: string; alt: string }) => {
+  const { imgSrc, alt } = props;
   return (
     <div
       className={css`
@@ -13,7 +13,7 @@ const Image = (props: { imgSrc: string }) => {
         }
       `}
     >
-      <img src={imgSrc} alt="" />
+      <img src={imgSrc} alt={alt} />
     </div>
   );
 };

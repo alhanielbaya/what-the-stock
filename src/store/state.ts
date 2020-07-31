@@ -1,5 +1,7 @@
-export const REQUEST_IMAGES_PENDING = 'REQUEST_IMAGES_PENDING';
-export const REQUEST_IMAGES_SUCCESS = 'REQUEST_IMAGES_SUCCESS';
+import { IImage } from "../types";
+
+export const REQUEST_IMAGES_PENDING = "REQUEST_IMAGES_PENDING";
+export const REQUEST_IMAGES_SUCCESS = "REQUEST_IMAGES_SUCCESS";
 
 const initialState = {
   imgArr: [],
@@ -16,8 +18,13 @@ export const stateReducer = (state = initialState, action: props) => {
     case REQUEST_IMAGES_PENDING:
       return { ...state, pending: true };
     case REQUEST_IMAGES_SUCCESS:
-      return { ...state, pending: false };
+      return { ...state, pending: false, imgArr: action.payload };
     default:
       return state;
   }
 };
+
+export interface IState {
+  imgArr: IImage[];
+  pending: boolean;
+}

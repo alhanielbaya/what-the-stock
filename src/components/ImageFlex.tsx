@@ -9,13 +9,19 @@ const ImageFlex = (props: { imgArr: Array<IImage> }) => {
 
   function arrToJsx(arr: Array<IImage>) {
     return arr.map((img: IImage, index: number) => {
-      return <Image imgSrc={img.src} key={index}></Image>;
+      return (
+        <Image
+          imgSrc={img.urls.small}
+          alt={img.alt_description}
+          key={index}
+        ></Image>
+      );
     });
   }
 
   function splitEvenly(arr: Array<IImage>) {
-    let arr1: Array<IImage> = [];
-    let arr2: Array<IImage> = [];
+    let arr1: IImage[] = [];
+    let arr2: IImage[] = [];
 
     arr.forEach((value: IImage, index: number) => {
       if (index % 2 === 0 || index === 0) {
@@ -28,9 +34,30 @@ const ImageFlex = (props: { imgArr: Array<IImage> }) => {
     return { arr1, arr2 };
   }
 
-  function splitIntoThree(arr: Array<IImage>) {}
+  function splitEvenlyIntoThree(arr: Array<IImage>) {
+    let arr1: IImage[] = [];
+    let arr2: IImage[] = [];
+    let arr3: IImage[] = [];
 
-  const { arr1: imgArr1, arr2: imgArr2 } = splitEvenly(imgArr);
+    arr.forEach((value: IImage, index: number) => {
+      if ((index + 1) % 3 === 0) {
+        arr3.push(value);
+      } else if (index % 2 === 0 || index === 0) {
+        arr1.push(value);
+      } else {
+        arr2.push(value);
+      }
+    });
+
+    return { arr1, arr2, arr3 };
+  }
+
+  const { arr1: mediumImgArr1, arr2: mediumImgArr2 } = splitEvenly(imgArr);
+  const {
+    arr1: largeImgArr1,
+    arr2: largeImgArr2,
+    arr3: largeImgArr3,
+  } = splitEvenlyIntoThree(imgArr);
 
   return (
     <>
@@ -59,8 +86,26 @@ const ImageFlex = (props: { imgArr: Array<IImage> }) => {
             // }
           `}
         >
-          <div className="images1">{arrToJsx(imgArr1)}</div>
-          <div className="images2">{arrToJsx(imgArr2)}</div>
+          <div className="images1">{arrToJsx(mediumImgArr1)}</div>
+          <div className="images2">{arrToJsx(mediumImgArr2)}</div>
+        </div>
+      </Breakpoint>
+
+      <Breakpoint large up>
+        <div
+          className={css`
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0 1rem;
+
+            .images1 {
+              grid-column: 1 / 2;
+            }
+          `}
+        >
+          <div className="images1">{arrToJsx(largeImgArr1)}</div>
+          <div className="images2">{arrToJsx(largeImgArr2)}</div>
+          <div className="images3">{arrToJsx(largeImgArr3)}</div>
         </div>
       </Breakpoint>
     </>

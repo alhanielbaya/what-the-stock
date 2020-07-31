@@ -15,11 +15,14 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-loading": "^2.0.3",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.1",
     "react-socks": "^2.1.0",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "unsplash-js": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,6 +49,7 @@
     "@babel/plugin-transform-typescript": "7.3.2",
     "@types/react-redux": "^7.1.9",
     "@types/redux": "^3.6.0",
-    "@types/redux-thunk": "^2.1.0"
+    "@types/redux-thunk": "^2.1.0",
+    "@types/unsplash-js": "^6.0.1"
   }
 }

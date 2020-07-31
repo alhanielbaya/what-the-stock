@@ -1,3 +1,8 @@
 export interface IImage {
-  src: string;
+  alt_description: string;
+  urls: {
+    full: string;
+    raw: string;
+    small: string;
+  };
 }
